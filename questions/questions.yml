@@ -1,0 +1,11 @@
+- id: 1
+  question: >
+    List all employees with a salary greater than $100,000.
+
+- id: 2
+  question: >
+    Show the average salary for each department.
+
+- id: 3
+  question: >
+    List the names of employees hired after 2018.

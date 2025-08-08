@@ -1,0 +1,20 @@
+1:
+  solution_sql: |
+    SELECT * FROM employees WHERE salary > 100000;
+  explanation: >
+    This query selects all employees whose salary is greater than $100,000.
+
+2:
+  solution_sql: |
+    SELECT d.name AS department, AVG(e.salary) AS avg_salary
+    FROM employees e
+    JOIN departments d ON e.department_id = d.id
+    GROUP BY d.name;
+  explanation: >
+    This query joins employees and departments, then calculates average salary for each department.
+
+3:
+  solution_sql: |
+    SELECT name FROM employees WHERE hire_date > '2018-12-31';
+  explanation: >
+    This query lists employees hired after December 31, 2018.
