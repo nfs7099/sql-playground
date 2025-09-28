@@ -14,7 +14,7 @@ try:
     QUESTIONS_PATH = Path(config.QUESTIONS_PATH)
     SOLUTIONS_PATH = Path(config.SOLUTIONS_PATH)
 except Exception:
-    # Fallbacks if config.py isn’t wired yet
+    #fallbacks if config.py isn’t working
     LLM_API_BASE = "http://localhost:11434/v1"
     LLM_API_KEY = "ollama"
     LLM_MODEL = "gemma2:9b"

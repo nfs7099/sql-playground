@@ -2,6 +2,8 @@ import re
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from typing import List, Dict, Any, Tuple
+from decimal import Decimal
+from datetime import date, datetime, time
 
 from config import config
 
@@ -29,14 +31,13 @@ def run_query(sql: str) -> Tuple[List[Dict[str, Any]], List[str]]:
             rows = cur.fetchall()
             cols = [desc.name for desc in cur.description]
             #Normalize certain types (e.g. Decimal to float) for JSON serialization
-            def normalize_val(v):
-                try:
-                    from decimal import Decimal
-                    if isinstance(v, Decimal):
-                        return float(v)
-                except Exception:
-                    pass
-                return v
+            def normalize_val(value):
+                if isinstance(value, Decimal):
+                    return float(value)
+                if isinstance(value, (datetime, date, time)):
+                    return value.isoformat()
+                return value
+
             normalized = [{k: normalize_val(v) for k, v in row.items()} for row in rows]
             return normalized, cols
 
